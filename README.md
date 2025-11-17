@@ -1,4 +1,4 @@
-# 🚗 Car Rental Backend System
+Car Rental Backend System
 A Spring Boot–based backend system for a car rental platform.  
 Supports user registration/login, car listing management, searching, booking, and rental price calculation.
 
@@ -6,46 +6,45 @@ This project is part of the **Software Development** course,
 and serves as the backend component of a collaborative front-end + back-end team project.
 
 ---
+Features Overview
 
-## 📌 Features Overview
-
-### ✅ User Management
+1.User Management
 - Register as **Rentee** or **Renter**
 - Login via email + password
 - User role management (RENTEE / RENTER / ADMIN)
 
-### ✅ Car Listing (CRUD)
+2.Car Listing (CRUD)
 - Create car listing (brand, model, price, location)
 - Update car info
 - Delete car listing
 - View/search available cars
 
-### ✅ Search & Filtering
+3.Search & Filtering
 - Filter cars by:
   - Location
   - Brand
   - Availability
   - Price sorting
 
-### ✅ Booking System
+4.Booking System
 - Create a booking request
 - Check availability
 - Booking status tracking
 
-### ✅ Rental Cost Calculation
+5.Rental Cost Calculation
 - Calculate cost based on:
   - start date
   - end date
   - daily price
 - Days calculation using Java Time API
 
-### ✅ In-Memory H2 Database
+6.In-Memory H2 Database
 - Auto table creation via Hibernate
 - H2 Console available at `/h2-console`
 
 ---
 
-## 🛠️ Tech Stack
+7.Tech Stack
 
 | Component           | Choice                                 |
 |---------------------|------------------------------------------|
@@ -57,7 +56,4 @@ and serves as the backend component of a collaborative front-end + back-end team
 | API Specification   | RESTful                                   |
 | Version Control     | Git + GitHub                              |
 
----
-
-## 📁 Project Structure
 
