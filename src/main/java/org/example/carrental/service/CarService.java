@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 
+/*
 @Service
 public class CarService {
 
@@ -68,3 +69,4 @@ public class CarService {
         return cars;
     }
 }
+*/

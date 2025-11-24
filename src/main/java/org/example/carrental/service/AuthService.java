@@ -1,44 +1,56 @@
 package org.example.carrental.service;
 
 import org.example.carrental.dto.LoginRequest;
-import org.example.carrental.dto.LoginResponse;
 import org.example.carrental.dto.RegisterRequest;
+import org.example.carrental.model.Role;
 import org.example.carrental.model.User;
 import org.example.carrental.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
 
+    @Autowired
     private final UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthenticationManager manager;
+
+    @Autowired
+    private JwtService jwtService;
 
     public AuthService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public User register(RegisterRequest request) {
+    public String register(RegisterRequest request) {
         User user = new User();
-        user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+
         user.setName(request.getName());
-        user.setRole(request.getRole());
-        return userRepository.save(user);
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPhone(request.getPhone());
+        user.setRole(new Role(1L, "User"));
+
+        userRepository.save(user);
+
+        return jwtService.generateToken(user, user.getId(), user.getRole());
     }
 
-    public LoginResponse login(LoginRequest request) {
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public String login(LoginRequest request) {
 
-        if (!user.getPassword().equals(request.getPassword())) {
-            throw new RuntimeException("Wrong password");
-        }
-
-        return new LoginResponse(
-                user.getId(),
-                user.getEmail(),
-                user.getName(),
-                user.getRole(),
-                "Login success"
+        manager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
+
+        var user = userRepository.findByEmail(request.getEmail());
+        return jwtService.generateToken(user, user.getId(), user.getRole());
     }
 }

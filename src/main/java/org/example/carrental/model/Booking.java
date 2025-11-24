@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "bookings")
-@Data
 public class Booking {
 
     @Id
@@ -15,18 +14,78 @@ public class Booking {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "rentee_id")
-    private User rentee;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @ManyToOne
-    @JoinColumn(name = "car_id")
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
+    @Column(name = "start_date")
     private LocalDate startDate;
+
+    @Column(name = "end_date")
     private LocalDate endDate;
 
     private Double totalPrice;
 
-    @Enumerated(EnumType.STRING)
-    private BookingStatus status;
+    public Booking() {
+    }
+
+    public Booking(Long id, User user, Car car, LocalDate startDate, LocalDate endDate, Double totalPrice) {
+        this.id = id;
+        this.user = user;
+        this.car = car;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.totalPrice = totalPrice;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

@@ -5,12 +5,17 @@ import org.example.carrental.model.CarStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
 
-    List<Car> findByStatusAndAvailableTrue(CarStatus status);
+    Optional<Car> findById(Long id);
 
-    List<Car> findByLocationAndAvailableTrue(String location);
+    List<Car> findByModel(String model);
 
-    List<Car> findByBrandContainingIgnoreCaseAndAvailableTrue(String brand);
+    List<Car> findByStatus(CarStatus status);
+
+    List<Car> findByLocationAndStatus(String location, String status);
+
+    List<Car> findByModelContainingIgnoreCaseAndStatus(String model, String status);
 }

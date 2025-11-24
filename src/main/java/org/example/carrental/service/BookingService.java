@@ -1,5 +1,6 @@
 package org.example.carrental.service;
 
+/*
 import org.example.carrental.dto.BookingRequest;
 import org.example.carrental.dto.RentalCostResponse;
 import org.example.carrental.model.*;
@@ -56,3 +57,4 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 }
+*/

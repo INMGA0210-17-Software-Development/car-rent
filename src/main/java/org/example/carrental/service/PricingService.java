@@ -1,5 +1,5 @@
 package org.example.carrental.service;
-
+/*
 import org.example.carrental.dto.RentalCostResponse;
 import org.example.carrental.model.Car;
 import org.example.carrental.repository.CarRepository;
@@ -28,3 +28,4 @@ public class PricingService {
         return new RentalCostResponse(carId, days, car.getDailyPrice(), total);
     }
 }
+*/
