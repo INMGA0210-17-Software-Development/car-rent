@@ -26,8 +26,8 @@ public class Car {
     @Column(name = "features")
     private String features;
 
-    @Column(name = "photo", columnDefinition = "LONGBLOB")
-    private byte[] photo;
+    @Column(name = "photo")
+    private String photo;
 
     @Column(name = "carPrice")
     private int carPrice;
@@ -91,11 +91,11 @@ public class Car {
         this.features = features;
     }
 
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
