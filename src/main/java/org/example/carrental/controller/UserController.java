@@ -8,6 +8,7 @@ import org.example.carrental.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,6 +28,9 @@ public class UserController {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable("id") @Param("id") Long id){
@@ -45,7 +49,7 @@ public class UserController {
                         HttpStatus.NOT_FOUND, "User with ID " + id + " not found.")
                 );
 
-        if (user.getRole().getId() != null || user.getRole().getRoleType() != null) {
+        if (user.getRole() != null && (user.getRole().getId() != null || user.getRole().getRoleType() != null)) {
             Optional<Role> role = roleRepository.findById(user.getRole().getId());
             existingUser.setRole(role.get());
         }
@@ -53,7 +57,7 @@ public class UserController {
         if (user.getName() != null) existingUser.setName(user.getName());
         if (user.getEmail() != null) existingUser.setEmail(user.getEmail());
         if (user.getPhone() != null) existingUser.setPhone(user.getPhone());
-        if (user.getPassword() != null) existingUser.setPassword(user.getPassword());
+        if (user.getPassword() != null) existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
 
         return userRepository.save(existingUser);
     }
