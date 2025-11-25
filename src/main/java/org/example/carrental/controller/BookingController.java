@@ -65,10 +65,13 @@ public class BookingController {
                         HttpStatus.NOT_FOUND, "Booking not found with id: " + id
                 ));
 
-        if (booking.getUser().getId() != null && booking.getCar().getId() != null){
+        if (booking.getUser() != null && booking.getUser().getId() != null){
             Optional<User> newUser = userRepository.findById(booking.getUser().getId());
-            Optional<Car> newCar = carRepository.findById(booking.getCar().getId());
             newBooking.setUser(newUser.get());
+        }
+
+        if (booking.getCar() != null && booking.getCar().getId() != null){
+            Optional<Car> newCar = carRepository.findById(booking.getCar().getId());
             newBooking.setCar(newCar.get());
         }
 
