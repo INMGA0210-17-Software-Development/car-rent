@@ -39,6 +39,24 @@ public class Car {
     @Column(name = "location")
     private String location;
 
+    @Column(name = "seats")
+    private int seats;
+
+    @Column(name = "gas_type")
+    private String gasType;
+
+    @Column(name = "transmission")
+    private String transmission;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "rentals")
+    private int rentals;
+
+    @Column(name = "rating")
+    private double rating;
+
     public Car() {
     }
 
@@ -121,5 +139,53 @@ public class Car {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    public String getGasType() {
+        return gasType;
+    }
+
+    public void setGasType(String gasType) {
+        this.gasType = gasType;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(int rentals) {
+        this.rentals = rentals;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

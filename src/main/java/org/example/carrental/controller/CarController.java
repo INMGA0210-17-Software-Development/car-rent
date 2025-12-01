@@ -48,6 +48,12 @@ public class CarController {
         newCar.setCarPrice(car.getCarPrice());
         newCar.setStatus(car.getStatus());
         newCar.setLocation(car.getLocation());
+        newCar.setDescription(car.getDescription());
+        newCar.setSeats(car.getSeats());
+        newCar.setTransmission(car.getTransmission());
+        newCar.setGasType(car.getGasType());
+        newCar.setRating(car.getRating());
+        newCar.setRentals(car.getRentals());
 
         return carRepository.save(newCar);
     }
@@ -66,12 +72,16 @@ public class CarController {
         }
 
         if (car.getModel() != null) existingCar.setModel(car.getModel());
-        existingCar.setYear(car.getYear());
+        if (car.getYear() != 0) existingCar.setYear(car.getYear());
         if (car.getFeatures() != null) existingCar.setFeatures(car.getFeatures());
         if (car.getPhoto() != null) existingCar.setPhoto(car.getPhoto());
-        existingCar.setCarPrice(car.getCarPrice());
+        if (car.getCarPrice() != 0) existingCar.setCarPrice(car.getCarPrice());
         if (car.getStatus() != null) existingCar.setStatus(car.getStatus());
         if (car.getLocation() != null) existingCar.setLocation(car.getLocation());
+        if (car.getSeats() != 0) existingCar.setSeats(car.getSeats());
+        if (car.getTransmission() != null) existingCar.setTransmission(car.getTransmission());
+        if (car.getGasType() != null) existingCar.setGasType(car.getGasType());
+        if (car.getDescription() != null) existingCar.setDescription(car.getDescription());
 
         return carRepository.save(existingCar);
     }
