@@ -13,6 +13,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-                .allowedOrigins("http://localhost:3000");
+                .allowedOrigins("http://localhost:3000", "car-rental-webapp-frontend-production.up.railway.app");
     }
 }
